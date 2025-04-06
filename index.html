@@ -3,55 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reasons I Love You</title>
+  <title>A Journey With You 💕</title>
   <style>
     body {
-      background: #ffe6ec;
-      font-family: 'Courier New', Courier, monospace;
-      color: #333;
+      background: #fef1f4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #3d2c2e;
       padding: 2em;
-      line-height: 1.6;
-      max-width: 700px;
-      margin: auto;
+      text-align: center;
     }
     h1 {
-      text-align: center;
-      font-size: 2.5em;
-      color: #d6336c;
+      font-size: 2.8em;
+      color: #e63973;
+      margin-bottom: 0.5em;
     }
-    .reason {
-      background: #fff;
-      border-radius: 10px;
-      padding: 1em;
-      margin-bottom: 1em;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: 0.3s;
+    .start-button, .choice-button {
+      background-color: #ff85a2;
+      border: none;
+      color: white;
+      padding: 1em 2em;
+      font-size: 1.2em;
+      border-radius: 12px;
+      margin: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
-    .reason:hover {
-      transform: scale(1.02);
-      background: #ffe6f0;
+    .start-button:hover, .choice-button:hover {
+      background-color: #ff5d86;
     }
-    .footer {
-      text-align: center;
-      margin-top: 3em;
-      font-size: 0.9em;
-      color: #888;
+    .hidden {
+      display: none;
+    }
+    .section {
+      max-width: 600px;
+      margin: 0 auto;
+      padding-top: 2em;
     }
   </style>
 </head>
 <body>
-  <h1>Reasons I Love You 💖</h1>
+  <h1>A Journey With You 💕</h1>
 
-  <div class="reason">1. Your voice makes my entire day better.</div>
-  <div class="reason">2. You support me even when I doubt myself.</div>
-  <div class="reason">3. You're effortlessly funny without even trying.</div>
-  <div class="reason">4. You make me feel safe, always.</div>
-  <div class="reason">5. You care so deeply — it's beautiful.</div>
-  <div class="reason">6. You're hot AND wholesome (unfair).</div>
-  <div class="reason">7. Every conversation with you feels like home.</div>
-
-  <div class="footer">
-    Made with love by Kayla 💌
+  <div class="section" id="intro">
+    <p>Ready to go on a little adventure with me?</p>
+    <button class="start-button" onclick="startAdventure()">Yes, let’s go 💫</button>
   </div>
+
+  <div class="section hidden" id="question1">
+    <p>Would you rather...</p>
+    <button class="choice-button" onclick="nextQuestion('coffee')">Go for coffee & people-watch ☕</button>
+    <button class="choice-button" onclick="nextQuestion('stars')">Go stargazing under a blanket ✨</button>
+  </div>
+
+  <div class="section hidden" id="question2">
+    <p>Quiz time! What’s my favorite way to spend a lazy Sunday?</p>
+    <button class="choice-button" onclick="showResult(true)">Making pancakes in PJs 🥞</button>
+    <button class="choice-button" onclick="showResult(false)">Running errands like a boss 🛒</button>
+  </div>
+
+  <div class="section hidden" id="result">
+    <p id="resultText"></p>
+  </div>
+
+  <audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+
+  <script>
+    function playSound() {
+      document.getElementById('clickSound').play();
+    }
+
+    function startAdventure() {
+      playSound();
+      document.getElementById('intro').classList.add('hidden');
+      document.getElementById('question1').classList.remove('hidden');
+    }
+
+    function nextQuestion(choice) {
+      playSound();
+      document.getElementById('question1').classList.add('hidden');
+      document.getElementById('question2').classList.remove('hidden');
+    }
+
+    function showResult(correct) {
+      playSound();
+      document.getElementById('question2').classList.add('hidden');
+      document.getElementById('result').classList.remove('hidden');
+
+      const resultText = correct
+        ? "You totally get me 🥹💖 That’s 100% my vibe."
+        : "LOL close, but now you owe me a Sunday like that 😏"
+
+      document.getElementById('resultText').textContent = resultText;
+    }
+  </script>
 </body>
 </html>
