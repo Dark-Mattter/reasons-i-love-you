@@ -17,7 +17,7 @@
       color: #e63973;
       margin-bottom: 0.5em;
     }
-    .start-button, .choice-button {
+    .start-button, .choice-button, .email-button {
       background-color: #ff85a2;
       border: none;
       color: white;
@@ -28,7 +28,7 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-    .start-button:hover, .choice-button:hover {
+    .start-button:hover, .choice-button:hover, .email-button:hover {
       background-color: #ff5d86;
     }
     .hidden {
@@ -51,23 +51,27 @@
 
   <div class="section hidden" id="question1">
     <p>Would you rather...</p>
-    <button class="choice-button" onclick="nextQuestion('coffee')">Go for coffee & people-watch ☕</button>
-    <button class="choice-button" onclick="nextQuestion('stars')">Go stargazing under a blanket ✨</button>
+    <button class="choice-button" onclick="nextQuestion('Let me dress you for a week')">Let me dress you for a week </button>
+    <button class="choice-button" onclick="nextQuestion('You dress me for a week?')">You dress me for a week? </button>
   </div>
 
   <div class="section hidden" id="question2">
     <p>Quiz time! What’s my favorite way to spend a lazy Sunday?</p>
-    <button class="choice-button" onclick="showResult(true)">Making pancakes in PJs 🥞</button>
-    <button class="choice-button" onclick="showResult(false)">Running errands like a boss 🛒</button>
+    <button class="choice-button" onclick="showResult(true, 'Kiss me slowly')">Kiss me slowly</button>
+    <button class="choice-button" onclick="showResult(false, 'Tease me playfully')">Tease me playfully</button>
   </div>
 
   <div class="section hidden" id="result">
     <p id="resultText"></p>
+    <button class="email-button" onclick="sendResults()">Send results to Kayla 💌</button>
   </div>
 
   <audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
 
   <script>
+    let storyChoice = "";
+    let quizAnswer = "";
+
     function playSound() {
       document.getElementById('clickSound').play();
     }
@@ -80,20 +84,33 @@
 
     function nextQuestion(choice) {
       playSound();
+      storyChoice = choice;
       document.getElementById('question1').classList.add('hidden');
       document.getElementById('question2').classList.remove('hidden');
     }
 
-    function showResult(correct) {
+    function showResult(correct, answer) {
       playSound();
+      quizAnswer = answer;
       document.getElementById('question2').classList.add('hidden');
       document.getElementById('result').classList.remove('hidden');
 
       const resultText = correct
-        ? "You totally get me 🥹💖 That’s 100% my vibe."
-        : "LOL close, but now you owe me a Sunday like that 😏"
+        ? "I don't think I will ever stop loving you."
+        : "I don't want to be without you.";
 
       document.getElementById('resultText').textContent = resultText;
+    }
+
+    function sendResults() {
+      const subject = encodeURIComponent("My Answers 🥺");
+      const body = encodeURIComponent(
+        `Hi Kayla! Here’s what I picked 💖\n\n` +
+        `Story Choice: ${storyChoice}\n` +
+        `Quiz Answer: ${quizAnswer}\n\n` +
+        `Now I’m waiting on that adventure with you 😉`
+      );
+      window.location.href = `mailto:kaylabrianna24@icloud.com?subject=${subject}&body=${body}`;
     }
   </script>
 </body>
