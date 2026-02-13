@@ -111,12 +111,12 @@
     }
 
     function sendResults() {
-      const subject = encodeURIComponent("My Answers 🥺");
+      const subject = encodeURIComponent("My Answers...");
       const body = encodeURIComponent(
-        `Hi Kayla! Here’s what I picked 💖\n\n` +
+        `Here’s what I want \n\n` +
         `Story Choice: ${storyChoice}\n` +
         `Quiz Answer: ${quizAnswer}\n\n` +
-        `Now I’m waiting on that adventure with you 😉`
+        `Now I’m waiting on that adventure with you`
       );
       window.location.href = `mailto:kaylabrianna24@icloud.com?subject=${subject}&body=${body}`;
     }
