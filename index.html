@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Can I be your dirty slut for Valentine's Day? </title>
+  <title>Can I be your dirty slut for Valentine's Day?</title>
   <style>
     body {
       background: #fef1f4;
@@ -42,84 +42,88 @@
   </style>
 </head>
 <body>
-  <h1>Tell me what you want from me</h1>
 
-  <div class="section" id="intro">
-    <p>Ready to go on a little adventure with me?</p>
-    <button class="start-button" onclick="startAdventure()">Yes, let’s go 💫</button>
-  </div>
+<h1>Tell me what you want from me</h1>
 
-  <div class="section hidden" id="question1">
-    <p>Would you rather...</p>
-    <button class="choice-button" onclick="nextQuestion('Get a blowjob for 20 minutes')">Get a blowjob for 20 minutes </button>
-    <button class="choice-button" onclick="nextQuestion('Face fuck me forcefully and unexpectedly')">Face fuck me forcefully and unexpectedly </button>
-  </div>
+<div class="section" id="intro">
+  <p>Ready to go on a little adventure with me?</p>
+  <button class="start-button" onclick="startAdventure()">Yes, let’s go 💫</button>
+</div>
 
-  <div class="section hidden" id="question2">
-    <p>Would you rather...</p>
-    <button class="choice-button" onclick="nextQuestion('Tie me up and use me as a fuck toy')">Tie me up and use me as a fuck toy</button>
-    <button class="choice-button" onclick="nextQuestion('Tie me up, blindfold me, gag me, and fuck someone else in front of me')">Tie me up, blindfold me, gag me, and fuck someone else in front of me</button>
-  </div>
+<div class="section hidden" id="question1">
+  <p>Would you rather...</p>
+  <button class="choice-button" onclick="nextQuestion('Get a blowjob for 20 minutes')">Get a blowjob for 20 minutes</button>
+  <button class="choice-button" onclick="nextQuestion('Face fuck me forcefully and unexpectedly')">Face fuck me forcefully and unexpectedly</button>
+</div>
 
-  <div class="section hidden" id="question3">
-    <p>Would you rather...</p>
-    <button class="choice-button" onclick="nextQuestion('Take me to a sex dungeon, get me drunk, and give you a sloppy blowjob in front of people')">Take me to a sex dungeon, get me drunk, and give you a sloppy blowjob in front of people</button>
-    <button class="choice-button" onclick="nextQuestion('Go to a sex dungeon and make me watch you makeout with other women')">Go to a sex dungeon and make me watch you makeout with other women</button>
-  </div>
+<div class="section hidden" id="question2">
+  <p>Would you rather...</p>
+  <button class="choice-button" onclick="nextQuestion('Tie me up and use me as a fuck toy')">Tie me up and use me as a fuck toy</button>
+  <button class="choice-button" onclick="nextQuestion('Tie me up, blindfold me, gag me, and fuck someone else in front of me')">Tie me up, blindfold me, gag me, and fuck someone else in front of me</button>
+</div>
 
-  <div class="section hidden" id="result">
-    <p id="resultText"></p>
-    <button class="email-button" onclick="sendResults()">Send results to Kayla 💌</button>
-  </div>
+<div class="section hidden" id="question3">
+  <p>Would you rather...</p>
+  <button class="choice-button" onclick="nextQuestion('Take me to a sex dungeon and give you a sloppy blowjob in front of people')">Take me to a sex dungeon and give you a sloppy blowjob in front of people</button>
+  <button class="choice-button" onclick="nextQuestion('Go to a sex dungeon and make me watch you makeout with other women')">Go to a sex dungeon and make me watch you makeout with other women</button>
+</div>
 
-  <audio id="clickSound" src="humordome-soft-ui-pop-light-minimal-click-451232.mp3"></audio>
+<div class="section hidden" id="result">
+  <p id="resultText"></p>
+  <button class="email-button" onclick="sendResults()">Send results to Kayla 💌</button>
+</div>
 
-  <script>
-    let storyChoice = "";
-    let quizAnswer = "";
+<audio id="clickSound" src="humordome-soft-ui-pop-light-minimal-click-451232.mp3"></audio>
 
-    function playSound() {
-      const sound = document.getElementById('clickSound');
-      sound.currentTime = 0;
-      sound.play();
-    }
+<script>
+  let currentStep = 1;
+  let answers = [];
 
-    function startAdventure() {
-      playSound();
-      document.getElementById('intro').classList.add('hidden');
-      document.getElementById('question1').classList.remove('hidden');
-    }
+  function playSound() {
+    const sound = document.getElementById('clickSound');
+    sound.currentTime = 0;
+    sound.play();
+  }
 
-    function nextQuestion(choice) {
-      playSound();
-      storyChoice = choice;
+  function startAdventure() {
+    playSound();
+    document.getElementById('intro').classList.add('hidden');
+    document.getElementById('question1').classList.remove('hidden');
+  }
+
+  function nextQuestion(choice) {
+    playSound();
+    answers.push(choice);
+
+    if (currentStep === 1) {
       document.getElementById('question1').classList.add('hidden');
       document.getElementById('question2').classList.remove('hidden');
-    }
+      currentStep = 2;
 
-    function showResult(correct, answer) {
-      playSound();
-      quizAnswer = answer;
+    } else if (currentStep === 2) {
       document.getElementById('question2').classList.add('hidden');
+      document.getElementById('question3').classList.remove('hidden');
+      currentStep = 3;
+
+    } else if (currentStep === 3) {
+      document.getElementById('question3').classList.add('hidden');
       document.getElementById('result').classList.remove('hidden');
-
-      const resultText = correct
-        ? "I don't think I will ever stop loving you."
-        : "I don't want to be without you.";
-
-      document.getElementById('resultText').textContent = resultText;
+      document.getElementById('resultText').textContent =
+        "Now I know exactly what you're thinking 😈";
     }
+  }
 
-    function sendResults() {
-      const subject = encodeURIComponent("My Answers...");
-      const body = encodeURIComponent(
-        `Here’s what I want \n\n` +
-        `Story Choice: ${storyChoice}\n` +
-        `Quiz Answer: ${quizAnswer}\n\n` +
-        `Now I’m waiting on that adventure with you`
-      );
-      window.location.href = `mailto:kaylabrianna24@icloud.com?subject=${subject}&body=${body}`;
-    }
-  </script>
+  function sendResults() {
+    const subject = encodeURIComponent("My Answers...");
+    const body = encodeURIComponent(
+      `Here’s what I want\n\n` +
+      answers.map((a, i) => `Question ${i+1}: ${a}`).join("\n") +
+      `\n\nNow I’m waiting on that adventure with you`
+    );
+
+    window.location.href = `mailto:kaylabrianna24@icloud.com?subject=${subject}&body=${body}`;
+  }
+</script>
+
 </body>
 </html>
